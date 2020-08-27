@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugTracker", "Asp.NETMVCCRUD\BugTracker.csproj", "{26296427-B22A-4EFB-AB6C-EEE33322B0DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asp.NETMVCCRUD", "Asp.NETMVCCRUD\Asp.NETMVCCRUD.csproj", "{26296427-B22A-4EFB-AB6C-EEE33322B0DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
