@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Asp.NETMVCCRUD.Models;
 using System.Data.Entity;
 using BugTracker.Models;
 
@@ -20,9 +19,9 @@ namespace Asp.NETMVCCRUD.Controllers
 
         public ActionResult GetData()
         {
-            using (DBModel db = new DBModel())
+            using (Entities db = new Entities())
             {
-                List<Ticket> empList = db.Employees.ToList<Ticket>();
+                List<Ticket> empList = db.Tickets.ToList<Ticket>();
                 return Json(new { data = empList }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -35,9 +34,9 @@ namespace Asp.NETMVCCRUD.Controllers
                 return View(new Ticket());
             else
             {
-                using (DBModel db = new DBModel())
+                using (Entities db = new Entities())
                 {
-                    return View(db.Employees.Where(x => x.EmployeeID==id).FirstOrDefault<Ticket>());
+                    return View(db.Tickets.Where(x => x.TicketID==id).FirstOrDefault<Ticket>());
                 }
             }
         }
@@ -45,11 +44,11 @@ namespace Asp.NETMVCCRUD.Controllers
         [HttpPost]
         public ActionResult AddOrEdit(Ticket emp)
         {
-            using (DBModel db = new DBModel())
+            using (Entities db = new Entities())
             {
-                if (emp.EmployeeID == 0)
+                if (emp.TicketID == 0)
                 {
-                    db.Employees.Add(emp);
+                    db.Tickets.Add(emp);
                     db.SaveChanges();
                     return Json(new { success = true, message = "Saved Successfully" }, JsonRequestBehavior.AllowGet);
                 }
@@ -66,9 +65,9 @@ namespace Asp.NETMVCCRUD.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            using (DBModel db = new DBModel())
+            using (Entities db = new Entities())
             {
-                Ticket emp = db.Tickets.Where(x => x.EmployeeID == id).FirstOrDefault<Ticket>();
+                Ticket emp = db.Tickets.Where(x => x.TicketID == id).FirstOrDefault<Ticket>();
                 db.Tickets.Remove(emp);
                 db.SaveChanges();
                 return Json(new { success = true, message = "Deleted Successfully" }, JsonRequestBehavior.AllowGet);
